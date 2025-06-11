@@ -1,0 +1,44 @@
+{{define "about"}}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{template "_header"}}
+  </head>
+  <body>
+    {{template "_message"}}
+    <p>Page: about</p>
+    <table>
+      <!-- actions pipeline output -->
+      <tr>
+        <td>{{"Name"}}</td>
+        <td>: {{.Name}}</td>
+      </tr>
+      <!-- variable -->
+      <tr>
+        <td>Gender</td>
+        {{$gender := .Gender}}
+        <td style="text-transform: capitalize">: {{$gender}}</td>
+      </tr>
+      <!-- Looping -->
+      <tr>
+        <td>Hobbies</td>
+        <td>: {{range $index, $elem := .Hobbies}} {{$elem}}, {{end}}</td>
+      </tr>
+      <!-- accessing property of object -->
+      <tr>
+        <td>Country</td>
+        <td>: {{.Address.Country}}</td>
+      </tr>
+      {{with .Address}}
+      <tr>
+        <td>Province</td>
+        <td>: {{.Province}}</td>
+      </tr>
+      {{end}}
+    </table>
+
+    <button type="button"><a href="http://localhost:3000">&lt;&lt; Back</a></button>
+  </body>
+</html>
+{{end}}
