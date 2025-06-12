@@ -1,0 +1,35 @@
+{{define "form"}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form</title>
+  </head>
+  <body>
+    <form action="/data" method="post" enctype="application/x-www-form-urlencoded">
+      <label for="username">Username :</label>
+      <input type="text" id="username" name="username" placeholder="Type your username here" required />
+      <br />
+      <label for="password">Password :</label>
+      <input type="password" id="password" name="password" placeholder="Type your password here" required />
+      <br />
+
+      <button type="submit">Login</button>
+    </form>
+  </body>
+</html>
+{{end}} {{define "result"}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome, {{.username}}</title>
+  </head>
+  <body>
+    <h1>Hello, {{.username}}</h1>
+    <p>This is your password {{.password}}</p>
+  </body>
+</html>
+{{end}}

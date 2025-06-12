@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download File</title>
+    <script>
+      function Yo() {
+        const ul = document.getElementById('list-files');
+        const renderData = (res) => {
+          res.forEach((el) => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+
+            li.innerText = 'download ';
+            li.appendChild(a);
+            ul.appendChild(li);
+
+            a.href = '/download?path=' + encodeURI(el.path);
+            a.innerText = el.filename;
+            a.target = '_blank';
+          });
+        };
+        const getAllListFiles = () => {
+          fetch('http://localhost:3000/list-files')
+            .then((response) => response.json())
+            .then((data) => renderData(data));
+        };
+        this.init = () => {
+          getAllListFiles();
+        };
+      }
+
+      window.onload = () => {
+        new Yo().init();
+      };
+    </script>
+  </head>
+  <body>
+    <ul id="list-files"></ul>
+  </body>
+</html>
